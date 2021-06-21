@@ -36,7 +36,7 @@
 ;; offical hexl-mode(using hexl program piping result in a lot memory
 ;; waste). The core part  of Hexview mode is just a simple builtin
 ;; function: `insert-file-contents-literally'. So Hexview doesn't need
-;; large memory to view large file. Due to the limitation of emacs's
+;; large memory to view large file. Due to the limitation of Emacs's
 ;; Integer representation , on 32-bit version, you can only view file
 ;; content up to index `268435455', but in 64-bit version `emacs' the
 ;; valid range of Integer is much larger. Practically, Hexview mode is
@@ -52,7 +52,7 @@
 ;;; Change Log:
 ;;
 ;; Version 0.0.5
-;; * fix cursor when moving 
+;; * fix cursor when moving
 ;; * add dummy template player (future feature)
 ;;
 ;; Version 0.0.4
@@ -108,12 +108,12 @@
 
 (defface hexview-address-region
   '((t (:inherit header-line)))
-  "Face used in address area of hexl-mode buffer."
+  "Face used in address area of `hexl-mode' buffer."
   :group 'hexview)
 
 (defface hexview-ascii-region
   '((t (:inherit header-line)))
-  "Face used in ascii area of hexl-mode buffer."
+  "Face used in ascii area of `hexl-mode' buffer."
   :group 'hexview)
 
 (defvar hexview-font-lock-keywords
@@ -149,8 +149,8 @@
                                    (hv:array (type byte) (number (hv:varref abc)))))))
 (defun hexview:play-template (template)
   (if (and (consp template) (listp template))
-      (insert (prin1-to-string template)))
-  )
+      (insert (prin1-to-string template))))
+
 (defun hexview:template-info ()
   (let ((tmpl (hexview:get-template hexview-view-file)))
     ;(hexview:play-template tmpl)
@@ -162,24 +162,28 @@
   (setf hexview-start-index (+ hexview-start-index (* hexview-line-height hexview-line-width)))
   (hexview:clamp-index)
   (hexview:update))
+
 (defun hexview:next-line ()
   "View the next line of the Hexview buffer."
   (interactive)
   (setf hexview-start-index (+ hexview-start-index hexview-line-width))
   (hexview:clamp-index)
   (hexview:update))
+
 (defun hexview:prev-page ()
   "View the previous page of the Hexview buffer."
   (interactive)
   (setf hexview-start-index (- hexview-start-index (* hexview-line-height hexview-line-width)))
   (hexview:clamp-index)
   (hexview:update))
+
 (defun hexview:prev-line ()
   "View the previous line of the Hexview buffer."
   (interactive)
   (setf hexview-start-index (- hexview-start-index hexview-line-width))
   (hexview:clamp-index)
   (hexview:update))
+
 (defun hexview:goto-index-hex ()
   "Prompt for a hexadecimal index of the Hexviewing file, and jump to it."
   (interactive)
@@ -187,6 +191,7 @@
     (setq hexview-start-index (string-to-number target 16)))
   (hexview:clamp-index)
   (hexview:update))
+
 (defun hexview:goto-index-dec ()
   "Prompt for a decimal index of the Hexviewing file, and jump to it."
   (interactive)
@@ -194,11 +199,11 @@
     (setq hexview-start-index (string-to-number target 10)))
   (hexview:clamp-index)
   (hexview:update))
+
 ;;large-file-warning-threshold
 (defun hexview:large-file-hook ()
-  "Use hexview-find-file if the file is too large.(by asking users)"
-  (message "Try & failed")
-  )
+  "Use hexview-find-file if the file is too large.(by asking users)."
+  (message "Try & failed"))
 
 (define-key hexview-mode-map "\M-n" 'hexview:next-page)
 (define-key hexview-mode-map [next] 'hexview:next-page)
@@ -213,7 +218,7 @@
 (define-key hexview-mode-map "q" 'kill-buffer)
 
 (defvar hexview:string-to-byte nil
-  "Get the byte of a string")
+  "Get the byte of a string.")
 
 (if (< emacs-major-version 23)
     (setq hexview:string-to-byte (lambda (s idx)
@@ -223,7 +228,7 @@
 
 (defun hexview:read-file-part (filename beg cnt)
   "Read part of file into a byte sequence"
-  (let ((seg (with-temp-buffer 
+  (let ((seg (with-temp-buffer
              (insert-file-contents-literally filename nil beg (+ beg cnt))
              (buffer-string))
            ))
@@ -289,10 +294,9 @@ When started, run `hexview-mode-hook'.
          (run-hooks 'hexview-mode-hook)))))
 
 (defun hexview-find-file (f)
-  "Find a file with `hexview-mode'"
+  "Find a file `F' with `hexview-mode'"
   (interactive "f")
-  (let ((hb (get-buffer-create f))
-        )
+  (let ((hb (get-buffer-create f)))
     (switch-to-buffer hb)
     (hexview-mode)
     (hexview:set-file f)
