@@ -77,7 +77,6 @@
 
 ;;; Code:
 
-(provide 'hexview-mode)
 
 (require 'cl)
 (load-library "files")
@@ -331,3 +330,5 @@ When started, run `hexview-mode-hook'.
                 (hexview-find-file filename)
               ad-do-it))))
 
+(provide 'hexview-mode)
+;;; hexview-mode.el ends here
