@@ -85,8 +85,6 @@
 (defconst hexview-line-width 16)
 ;;how many lines in a Hexview buffer
 (defconst hexview-line-height 32)
-;;should we plot some usage information?
-(defconst hexview-usage-info t)
 
 (defvar hexview-mode-hook nil
   "Hook to run after installing hexview mode")
@@ -129,14 +127,6 @@
     (setq hexview-start-index (cond ((< hexview-start-index 0) 0)
                                     ((>= hexview-start-index flen) (1- flen))
                                     (t hexview-start-index)))))
-(defun hexview:usage-info ()
-  (if hexview-usage-info
-      (progn
-        (insert "\n"
-                "n: next-line    p: prev-line   q: kill-buffer          M-g | g: goto HEX index\n"
-                "M-n | PgDn: next-page          M-p | PgUp: prev-page   M-j | j: goto DEC index\n"
-        ))
-    t))
 
 (defun hexview:get-template (fn)
   '(hv:till-end (hv:struct (name cdata)
@@ -250,7 +240,6 @@
         (insert "   "))
       (mapc #'(lambda (x) (insert (if (hexview:textp x) x "."))) line-chars)
       (insert "\n")))
-    (hexview:usage-info)
     (hexview:template-info)
     (goto-char old-point)))
 
