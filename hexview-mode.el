@@ -40,7 +40,7 @@
 ;; Integer representation , on 32-bit version, you can only view file
 ;; content up to index `268435455', but in 64-bit version `emacs' the
 ;; valid range of Integer is much larger. Practically, Hexview mode is
-;; enough for 80% of you dailly usage. So enjoy.
+;; enough for 80% of you daily usage. So enjoy.
 
 ;;; Install:
 ;;
@@ -132,6 +132,7 @@
   '(hv:till-end (hv:struct (name cdata)
                            (member (hv:int (name abc))
                                    (hv:array (type byte) (number (hv:varref abc)))))))
+
 (defun hexview:play-template (template)
   (if (and (consp template) (listp template))
       (insert (prin1-to-string template))))
@@ -212,7 +213,7 @@
                                   (get-byte idx s))))
 
 (defun hexview:read-file-part (filename beg cnt)
-  "Read part of file into a byte sequence"
+  "Read part of file into a byte sequence."
   (let ((seg (with-temp-buffer
              (insert-file-contents-literally filename nil beg (+ beg cnt))
              (buffer-string))
@@ -220,12 +221,12 @@
   (mapcar #'(lambda (x) (funcall hexview:string-to-byte (char-to-string x) 0)) seg)))
 
 (defun hexview:set-file (filename)
-  "Set the viewing file name of a Hexview buffer"
+  "Set `FILENAME' as the viewing file name of a Hexview buffer."
   (interactive "f")
   (setq hexview-view-file filename))
 
 (defun hexview:update ()
-  "Use the `hexview-start-index' to update the whole buffer"
+  "Use the `hexview-start-index' to update the whole buffer."
   (let ((inhibit-read-only t)
         (old-point (point)))
     (erase-buffer)
@@ -276,7 +277,7 @@ When started, run `hexview-mode-hook'.
       (run-hooks 'hexview-mode-hook))))
 
 (defun hexview-find-file (f)
-  "Find a file `F' with `hexview-mode'"
+  "Find a file `F' with `hexview-mode'."
   (interactive "f")
   (let ((hb (get-buffer-create f)))
     (switch-to-buffer hb)
