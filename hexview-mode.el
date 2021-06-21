@@ -81,11 +81,6 @@
 (require 'easymenu)
 (load-library "files")
 
-
-(defconst hexview-mode-version "0.0.4")
-(defconst hexview-bug-e-mail "collger@eyou.com")
-(defconst hexview-web-url "http://slimeweb.com/")
-
 ;;how many chars in a Hexview line
 (defconst hexview-line-width 16)
 ;;how many lines in a Hexview buffer
