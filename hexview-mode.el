@@ -78,7 +78,7 @@
 ;;; Code:
 
 
-(require 'cl)
+(require 'easymenu)
 (load-library "files")
 
 
