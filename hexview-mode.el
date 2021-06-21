@@ -145,28 +145,28 @@
 (defun hexview:next-page ()
   "View the next page of the Hexview buffer."
   (interactive)
-  (setf hexview-start-index (+ hexview-start-index (* hexview-line-height hexview-line-width)))
+  (cl-incf hexview-start-index (* hexview-line-height hexview-line-width))
   (hexview:clamp-index)
   (hexview:update))
 
 (defun hexview:next-line ()
   "View the next line of the Hexview buffer."
   (interactive)
-  (setf hexview-start-index (+ hexview-start-index hexview-line-width))
+  (cl-incf hexview-start-index hexview-line-width)
   (hexview:clamp-index)
   (hexview:update))
 
 (defun hexview:prev-page ()
   "View the previous page of the Hexview buffer."
   (interactive)
-  (setf hexview-start-index (- hexview-start-index (* hexview-line-height hexview-line-width)))
+  (cl-decf hexview-start-index (* hexview-line-height hexview-line-width))
   (hexview:clamp-index)
   (hexview:update))
 
 (defun hexview:prev-line ()
   "View the previous line of the Hexview buffer."
   (interactive)
-  (setf hexview-start-index (- hexview-start-index hexview-line-width))
+  (cl-decf hexview-start-index hexview-line-width)
   (hexview:clamp-index)
   (hexview:update))
 
