@@ -96,8 +96,7 @@
 (defvar hexview-mode-hook nil
   "Hook to run after installing hexview mode")
 (defvar hexview-mode-map
-  (let ((map (make-keymap)))
-    map))
+  (make-keymap))
 (defvar hexview-view-file nil
   "Current filename being hexviewing.")
 (defvar hexview-start-index nil
