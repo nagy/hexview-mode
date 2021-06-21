@@ -311,11 +311,8 @@ When started, run `hexview-mode-hook'.
     ["Goto hex index" hexview:goto-index-hex
      :help "Goto hex index"]
     ["Goto dec index" hexview:goto-index-dec
-     :help "Goto dec index"]
-    "-"
-    ["Kill buffer" kill-buffer
-     :help "Kill the buffer"]
-))
+     :help "Goto dec index"]))
+
 
 ;(add-hook 'find-file-hook 'hexview:large-file-hook)
 (defadvice find-file-noselect (around find-file-noselect-with-hexview last (filename &optional nowarn rawfile wildcards) activate)
