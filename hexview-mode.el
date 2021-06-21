@@ -279,9 +279,8 @@ When started, run `hexview-mode-hook'.
     (setq major-mode                    'hexview-mode
       mode-name                     "Hexview"
       hexview-start-index            0
-      hexview-cursor-index           0
-      )
-    (toggle-read-only 1)
+      hexview-cursor-index           0)
+    (read-only-mode 1)
     (use-local-map hexview-mode-map)
     (setq font-lock-defaults '(hexview-font-lock-keywords t))
     (if hexview-mode-hook
