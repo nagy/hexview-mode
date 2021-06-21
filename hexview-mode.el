@@ -275,23 +275,22 @@ When started, run `hexview-mode-hook'.
   (interactive)
   (if (buffer-file-name)
       (hexview-find-file (buffer-file-name))
-    (progn 
-     ;; set up local variables
-     (kill-all-local-variables)
-     (make-local-variable 'hexview-start-index)
-     (make-local-variable 'hexview-cursor-index)
-     (make-local-variable 'hexview-view-file)
-     ;;
-     (setq major-mode                    'hexview-mode
-           mode-name                     "Hexview"
-           hexview-start-index            0
-           hexview-cursor-index           0
-           )
-     (toggle-read-only 1)
-     (use-local-map hexview-mode-map)
-     (setq font-lock-defaults '(hexview-font-lock-keywords t))
-     (if hexview-mode-hook
-         (run-hooks 'hexview-mode-hook)))))
+    ;; set up local variables
+    (kill-all-local-variables)
+    (make-local-variable 'hexview-start-index)
+    (make-local-variable 'hexview-cursor-index)
+    (make-local-variable 'hexview-view-file)
+    ;;
+    (setq major-mode                    'hexview-mode
+      mode-name                     "Hexview"
+      hexview-start-index            0
+      hexview-cursor-index           0
+      )
+    (toggle-read-only 1)
+    (use-local-map hexview-mode-map)
+    (setq font-lock-defaults '(hexview-font-lock-keywords t))
+    (if hexview-mode-hook
+      (run-hooks 'hexview-mode-hook))))
 
 (defun hexview-find-file (f)
   "Find a file `F' with `hexview-mode'"
