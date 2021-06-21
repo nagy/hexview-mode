@@ -118,10 +118,12 @@
 
 
 (defun hexview:filelen (f)
-  (elt (file-attributes f) 7))
+  (file-attribute-size (file-attributes f)))
+
 (defun hexview:textp (c)
   (and (> c 31)
        (< c 127)))
+
 (defun hexview:clamp-index ()
   (let ((flen (hexview:filelen hexview-view-file)))
     (setq hexview-start-index (cond ((< hexview-start-index 0) 0)
